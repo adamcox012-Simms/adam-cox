@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adam Cox — Enterprise Sales Executive</title>
+<meta name="description" content="Adam Cox is an enterprise sales executive with 15+ years in healthcare supply chain and life sciences. Currently at GHX, 7x President's Club, 116% average quota attainment.">
+<style>
+/* ——— Fonts ——— */
+@font-face { font-family: 'PP Neue Montreal'; src: url('./fonts/PPNeueMontreal-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'PP Neue Montreal'; src: url('./fonts/PPNeueMontreal-Book.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'PP Neue Montreal'; src: url('./fonts/PPNeueMontreal-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'PP Neue Montreal'; src: url('./fonts/PPNeueMontreal-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+
+/* ——— Tokens ——— */
+:root {
+  --bg: #F6F7F9;
+  --surface: #FFFFFF;
+  --text: #1A1D26;
+  --text-secondary: #5A5E6A;
+  --text-muted: #8E929E;
+  --border: #E4E6EB;
+  --accent: #2B5F8C;
+  --accent-hover: #1E4A6E;
+  --accent-subtle: rgba(43, 95, 140, 0.06);
+  --dark: #1A1D26;
+
+  --font: 'PP Neue Montreal', 'Helvetica Neue', Arial, sans-serif;
+
+  --shadow-ambient: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+  --container: 1100px;
+  --px: 64px;
+}
+
+/* ——— Reset ——— */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: var(--font); font-weight: 400; color: var(--text); background: var(--bg); line-height: 1.5; font-size: 16px; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ——— Focus ——— */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ——— Reduced motion ——— */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ——— Container ——— */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: var(--px);
+  padding-right: var(--px);
+}
+
+/* ——— Grain overlay ——— */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.022;
+}
+
+/* ——— Scroll reveal ——— */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ——— Nav ——— */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+.nav.scrolled {
+  background: rgba(26, 29, 38, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s;
+  letter-spacing: 0.02em;
+}
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* ——— Section label ——— */
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.section-label--light {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ——— HERO ——— */
+.hero {
+  min-height: 100vh;
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 100px;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+.hero-role {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.hero-name {
+  font-weight: 700;
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: 0.88;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+.hero-desc {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 50ch;
+  margin-bottom: 64px;
+}
+.hero-stats {
+  display: flex;
+  gap: 56px;
+}
+.hero-stat-number {
+  font-weight: 700;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+.hero-stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 10px;
+}
+
+/* ——— CAREER ——— */
+.career {
+  padding: 140px 0;
+  background: var(--bg);
+}
+.career-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 0.92;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 72px;
+  max-width: 500px;
+}
+.career-list {
+  border-top: 1px solid var(--border);
+}
+.career-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+.career-year {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.career-role {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+  margin-bottom: 2px;
+  line-height: 1.35;
+}
+.career-company {
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.career-desc {
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 540px;
+}
+
+/* ——— WHAT I DELIVER ——— */
+.deliver {
+  padding: 120px 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.deliver-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 0.92;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 64px;
+}
+.deliver-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.deliver-item {
+  padding: 36px 40px 36px 0;
+  border-top: 1px solid var(--border);
+}
+.deliver-item:nth-child(even) {
+  padding-left: 40px;
+  padding-right: 0;
+  border-left: 1px solid var(--border);
+}
+.deliver-item:nth-child(1),
+.deliver-item:nth-child(2) {
+  border-top: none;
+}
+.deliver-item-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.deliver-item-desc {
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.deliver-verticals {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.deliver-verticals-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.deliver-verticals-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.deliver-verticals-list span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+/* ——— BY THE NUMBERS ——— */
+.numbers {
+  padding: 140px 0;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.numbers-item {
+  padding: 48px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.numbers-item:not(:nth-child(3n+1)) {
+  padding-left: 40px;
+}
+.numbers-item:not(:nth-child(3n)) {
+  border-right: 1px solid rgba(255,255,255,0.08);
+  padding-right: 40px;
+}
+.numbers-value {
+  font-weight: 700;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+.numbers-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+/* Last row: 2 items, centered */
+.numbers-row-bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: none;
+}
+.numbers-row-bottom .numbers-item {
+  border-bottom: none;
+}
+
+/* ——— APPROACH ——— */
+.approach {
+  padding: 140px 0;
+  background: var(--bg);
+}
+.approach-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 0.92;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 72px;
+}
+.approach-list {
+  border-top: 1px solid var(--border);
+}
+.approach-item {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: baseline;
+}
+.approach-item-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+}
+.approach-item-desc {
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ——— AI VISION ——— */
+.vision {
+  padding: 140px 0;
+  background: var(--dark);
+  position: relative;
+}
+.vision-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.vision-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 0.92;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+.vision-body {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 24px;
+}
+.vision-pullquote {
+  font-weight: 400;
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.4;
+  color: #fff;
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-left: 28px;
+  border-left: 2px solid var(--accent);
+}
+
+/* ——— RECOGNITION ——— */
+.recognition {
+  padding: 140px 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.recognition-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 0.92;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 64px;
+}
+.recognition-list {
+  border-top: 1px solid var(--border);
+}
+.recognition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.recognition-award {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text);
+}
+.recognition-source {
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ——— CONTACT ——— */
+.contact {
+  padding: 120px 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.contact-title {
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 0.92;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+}
+.contact-desc {
+  font-weight: 300;
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 480px;
+  line-height: 1.55;
+}
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contact-link {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--text-secondary);
+  transition: color 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+.contact-link:hover {
+  color: var(--accent);
+}
+.contact-link-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  width: 72px;
+  flex-shrink: 0;
+}
+
+/* ——— FOOTER ——— */
+.footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-name {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.footer-top {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  transition: color 0.25s;
+}
+.footer-top:hover {
+  color: var(--text);
+}
+
+/* ——— MOBILE ——— */
+@media (max-width: 1024px) {
+  :root { --px: 40px; }
+  .hero-stats { gap: 40px; }
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+  .numbers-row-bottom { grid-template-columns: 1fr; }
+  .vision-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 768px) {
+  :root { --px: 28px; }
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 12px; }
+  .hero { padding: 100px 0 72px; }
+  .hero-desc { font-size: 17px; margin-bottom: 48px; }
+  .hero-stats { flex-direction: column; gap: 32px; }
+  .career, .deliver, .numbers, .approach, .vision, .recognition, .contact { padding: 100px 0; }
+  .career-item { grid-template-columns: 1fr; gap: 8px; }
+  .career-year { padding-top: 0; }
+  .deliver-grid { grid-template-columns: 1fr; }
+  .deliver-item { padding: 28px 0; }
+  .deliver-item:nth-child(even) { padding-left: 0; border-left: none; }
+  .deliver-item:nth-child(2) { border-top: 1px solid var(--border); }
+  .numbers-grid { grid-template-columns: 1fr; }
+  .numbers-item:not(:nth-child(3n+1)) { padding-left: 0; }
+  .numbers-item:not(:nth-child(3n)) { border-right: none; padding-right: 0; }
+  .numbers-row-bottom .numbers-item { padding-left: 0; }
+  .approach-item { grid-template-columns: 1fr; gap: 8px; }
+  .recognition-item { flex-direction: column; gap: 4px; }
+}
+
+@media (max-width: 640px) {
+  :root { --px: 20px; }
+  .nav { padding: 16px 0; }
+  .nav-name { font-size: 14px; }
+  .hero-name { margin-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain -->
+<svg class="grain" aria-hidden="true">
+  <filter id="grain-filter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+</svg>
+
+<!-- Nav -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="#" class="nav-name">Adam Cox</a>
+    <div class="nav-links">
+      <a href="#career">Career</a>
+      <a href="#numbers">Numbers</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" aria-label="Introduction">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-role reveal">Enterprise Sales Executive</div>
+      <h1 class="hero-name reveal">Adam Cox</h1>
+      <p class="hero-desc reveal">15 years closing six and seven-figure deals across enterprise SaaS and healthcare supply chain. A track record built on complex platform sales, C-suite relationships, and knowing how to make a strong business case land.</p>
+      <div class="hero-stats reveal">
+        <div class="hero-stat">
+          <div class="hero-stat-number">116%</div>
+          <div class="hero-stat-label">Avg. Quota Attainment</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">7x</div>
+          <div class="hero-stat-label">President's Club</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">202%</div>
+          <div class="hero-stat-label">Peak Year (2024)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Career -->
+<section class="career" id="career" aria-label="Career history">
+  <div class="container">
+    <div class="section-label reveal">Career</div>
+    <h2 class="career-title reveal">Nine years. Four promotions.</h2>
+    <div class="career-list">
+      <div class="career-item reveal">
+        <div class="career-year">2016 — Present</div>
+        <div>
+          <div class="career-role">Strategic Account Executive <span style="font-weight:300; color: var(--text-muted); font-size: 14px;">· 4 promotions</span></div>
+          <div class="career-company">Global Healthcare Exchange (GHX)</div>
+          <div class="career-desc">Nine years selling cloud-based supply chain platforms to medical device manufacturers, pharmaceutical suppliers, and biotechnology companies across healthcare's largest trading network. The work stayed consistent: complex accounts, multiple stakeholders, C-suite relationships across supply chain, finance, and IT. The quotas just got bigger with each promotion. Averaged 116% across nine years. Peak of 202% in 2024. Named Salesperson of the Year.</div>
+        </div>
+      </div>
+      <div class="career-item reveal">
+        <div class="career-year">2010 -- 2016</div>
+        <div>
+          <div class="career-role">Enterprise Account Executive</div>
+          <div class="career-company">Quadient</div>
+          <div class="career-desc">Built and managed a Colorado territory selling enterprise logistics and document software solutions. Ranked top 25% nationally, #2 in new account revenue for consecutive years (2013–2014), and grew territory 46% year-over-year through disciplined account management and consultative selling. Earned 2015 Top Performer, Colorado Region.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What I Deliver -->
+<section class="deliver" aria-label="What I deliver">
+  <div class="container">
+    <div class="section-label reveal">The Work</div>
+    <h2 class="deliver-title reveal">What I deliver</h2>
+    <div class="deliver-grid">
+      <div class="deliver-item reveal">
+        <div class="deliver-item-title">The Modernization Sale</div>
+        <div class="deliver-item-desc">The sale isn't the software. It's convincing a complex organization that what they've built around their current systems costs more than replacing them. That's the conversation I've been having for 15 years.</div>
+      </div>
+      <div class="deliver-item reveal">
+        <div class="deliver-item-title">Consultative Discovery</div>
+        <div class="deliver-item-desc">Diagnosing what an organization actually needs before talking product. Working across IT, supply chain, and finance to get everyone pointing the same direction. That's what closes enterprise deals.</div>
+      </div>
+      <div class="deliver-item reveal">
+        <div class="deliver-item-title">Selling the Network</div>
+        <div class="deliver-item-desc">GHX connects 1.3M+ trading partners. I don't sell software, I sell what happens when an organization is plugged into that network. It's a different conversation than a feature demo.</div>
+      </div>
+      <div class="deliver-item reveal">
+        <div class="deliver-item-title">Business Case Development</div>
+        <div class="deliver-item-desc">Translating data from $128B+ in annual transaction volume into business cases that move executives from curiosity to commitment.</div>
+      </div>
+    </div>
+    <div class="deliver-verticals reveal">
+      <div class="deliver-verticals-label">Key Verticals</pan>
+      <div class="deliver-verticals-list">
+        <span>Medical Device Manufacturers</span>
+        <span>Pharmaceutical Suppliers</span>
+        <span>Biotechnology Companies</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- By the Numbers -->
+<section class="numbers" id="numbers" aria-label="Performance metrics">
+  <div class="container">
+    <div class="section-label section-label--light reveal">By the Numbers</div>
+    <div class="numbers-grid">
+      <div class="numbers-item reveal">
+        <div class="numbers-value">116%</div>
+        <div class="numbers-desc">Average quota attainment across tenure</div>
+      </div>
+      <div class="numbers-item reveal">
+        <div class="numbers-value">202%</div>
+        <div class="numbers-desc">Peak performance, 2024</div>
+      </div>
+      <div class="numbers-item reveal">
+        <div class="numbers-value">4x</div>
+        <div class="numbers-desc">Promoted at GHX in nine years</div>
+      </div>
+    </div>
+    <div class="numbers-row-bottom">
+      <div class="numbers-item reveal" style="border-right: 1px solid rgba(255,255,255,0.08); padding-right: 40px;">
+        <div class="numbers-value">7x</div>
+        <div class="numbers-desc">President's Club qualifier</div>
+      </div>
+      <div class="numbers-item reveal" style="padding-left: 40px;">
+        <div class="numbers-value">$128B+</div>
+        <div class="numbers-desc">Annual transaction volume across the GHX network</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Approach -->
+<section class="approach" aria-label="Sales approach">
+  <div class="container">
+    <div class="section-label reveal">Approach</div>
+    <h2 class="approach-title reveal">How I sell</h2>
+    <div class="approach-list">
+      <div class="approach-item reveal">
+        <div class="approach-item-title">I ask better questions than anyone in the room.</div>
+        <div class="approach-item-desc">Understanding the real problem, not the stated one, is where deals actually begin. Curiosity is the skill that doesn't show up on a quota report.</div>
+      </div>
+      <div class="approach-item reveal">
+        <div class="approach-item-title">I know where the whitespace is.</div>
+        <div class="approach-item-desc">Every hour I spend with a prospect is deliberate. I don't chase what doesn't fit. Knowing what to walk away from is as important as knowing what to pursue. That's what makes 116% look repeatable.</div>
+      </div>
+      <div class="approach-item reveal">
+        <div class="approach-item-title">Numbers cut through noise.</div>
+        <div class="approach-item-desc">First call or QBR, every conversation runs on the customer's own numbers. Abstract value propositions don't close enterprise deals. Quantified ROI does.</div>
+      </div>
+      <div class="approach-item reveal">
+        <div class="approach-item-title">Closed-won is the beginning, not the end.</div>
+        <div class="approach-item-desc">My highest-value relationships started as renewals that turned into multi-year expansions. I sell with the end in mind because that's where the real revenue is.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recognition -->
+<section class="recognition" aria-label="Awards and recognition">
+  <div class="container">
+    <div class="section-label reveal">Recognition</div>
+    <h2 class="recognition-title reveal">Awards</h2>
+    <div class="recognition-list">
+      <div class="recognition-item reveal">
+        <span class="recognition-award">Salesperson of the Year</span>
+        <span class="recognition-source">GHX · 2019</span>
+      </div>
+      <div class="recognition-item reveal">
+        <span class="recognition-award">Strategic Account Manager of the Year</span>
+        <span class="recognition-source">GHX · 2024</span>
+      </div>
+      <div class="recognition-item reveal">
+        <span class="recognition-award">Division Sales Rep of the Year</span>
+        <span class="recognition-source">GHX · 3x</span>
+      </div>
+      <div class="recognition-item reveal">
+        <span class="recognition-award">Mid-Market Sales Rep of the Year</span>
+        <span class="recognition-source">GHX · 2x</span>
+      </div>
+      <div class="recognition-item reveal">
+        <span class="recognition-award">President's Club</span>
+        <span class="recognition-source">GHX · 7x</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact" aria-label="Contact information">
+  <div class="container">
+    <h2 class="contact-title reveal">Let's talk.</h2>
+    <p class="contact-desc reveal">If you're building an enterprise sales team that needs someone who can run complex platform deals from first call to close, I'd like to have that conversation.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:Adam.cox012@gmail.com" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        Adam.cox012@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/adamcox12/" class="contact-link" target="_blank" rel="noopener noreferrer">
+        <span class="contact-link-label">LinkedIn</span>
+        linkedin.com/in/adamcox12
+      </a>
+      <a href="tel:+13144064183" class="contact-link">
+        <span class="contact-link-label">Phone</span>
+        (314) 406-4183
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-name">Adam Cox</span>
+      <a href="#" class="footer-top" aria-label="Back to top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* Nav scroll state */
+  var nav = document.querySelector('.nav');
+  var lastY = 0;
+  function onScroll() {
+    var y = window.scrollY;
+    if (y > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastY = y;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Scroll reveal via IntersectionObserver */
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    var reveals = document.querySelectorAll('.reveal');
+    var staggerMap = new Map();
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var parent = entry.target.parentElement;
+          if (!staggerMap.has(parent)) {
+            staggerMap.set(parent, 0);
+          }
+          var index = staggerMap.get(parent);
+          staggerMap.set(parent, index + 1);
+          var delay = index * 75;
+          entry.target.style.transitionDelay = delay + 'ms';
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+          setTimeout(function() { staggerMap.set(parent, 0); }, 400);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      var target = document.querySelector(href);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+})();
+</script></body></html>
